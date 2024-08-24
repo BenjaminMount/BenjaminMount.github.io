@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Bioinformatics Datasets</title>
+      <link href="/2024/08/24/Datasets/"/>
+      <url>/2024/08/24/Datasets/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Bioinformatics-Datasets-Description"><a href="#Bioinformatics-Datasets-Description" class="headerlink" title="Bioinformatics Datasets Description"></a>Bioinformatics Datasets Description</h1><h2 id="1-1000G"><a href="#1-1000G" class="headerlink" title="1 1000G"></a>1 1000G</h2><h2 id="2-UK-Biobank"><a href="#2-UK-Biobank" class="headerlink" title="2 UK Biobank"></a>2 UK Biobank</h2><h2 id="3-FinnGen"><a href="#3-FinnGen" class="headerlink" title="3 FinnGen"></a>3 FinnGen</h2><hr><h2 id="4-dbSNP"><a href="#4-dbSNP" class="headerlink" title="4 dbSNP"></a>4 dbSNP</h2><p>Single Nucleotide Polymorphism Database：单核苷酸多态性数据库由美国国家生物技术信息中心（NCBI）开发维护，旨在收集、存储和提供各种生物物种中小型基因组变异的信息，于1998年首次推出。</p><p>链接：<a href="https://www.ncbi.nlm.nih.gov/snp/">Home - SNP - NCBI (nih.gov)</a></p><p><img src="/2024/08/24/Datasets/dbSNP_flow.png" alt="dbSNP_flow"></p><h3 id="4-1-内容架构"><a href="#4-1-内容架构" class="headerlink" title="4.1 内容架构"></a>4.1 内容架构</h3><p>dnSNP最初主要收录人类基因组中的单核苷酸多态性（SNPs），现逐渐扩展到包括其他类型的小规模变异，内容包括：</p><ul><li>单核苷酸多态性（SNPs）：指在基因组的某个位置单个核苷酸（A、T、C、G）的变化；</li><li>插入和缺失变异（Indels）：基因组中插入或缺失的小片段DNA，通常插入或缺失的长度为一至数十个碱基；</li><li>简单序列重复（Simple Sequence Repeats，SSRs）：也称微卫星标记（Microsatellites），由短的核苷酸序列（通常为2~6个碱基对）重复多次形成。</li><li>拷贝数变异（Copy Number Variations，CNVs）：基因组中大段DNA的拷贝数变化，包括大规模的插入，缺失或重复。</li><li>多核苷酸多态性（ Multinucleotide Polymorphisms， MNPs）：在同一物种的不同个体中或同一基因组的不同拷贝中，存在多个不同的核苷酸序列。具体地说描述的是：一种基因位点在不同个体间存在两种或两种以上等位基因的现象。<strong>因此MNPs包括了CNVs</strong>，CNVs是多核苷酸多态性的一种特殊形式。</li><li>杂合序列（Heterozygous Sequence）：指在同一个基因座（locus）上，来自父母双方的两条染色体携带了不同的等位基因，对于二倍体生物，每个基因座通常有两条染色体上的对应序列，序列不同时，基因座就是杂合的。</li><li>命名变体（Named Variants）：指已经被识别并且已经被正式命名的基因变异。</li></ul><h3 id="4-2-数据来源"><a href="#4-2-数据来源" class="headerlink" title="4.2 数据来源"></a>4.2 数据来源</h3><ul><li><p>大型基因组测序项目：如人类基因组计划、国际千人基因组计划、ExAC数据库。</p><p><strong>Tips</strong>：ExAC数据库：Exome Aggregation Consortium是一个由多个研究机构联合创建的公共数据库，旨在汇集来自大量人类个体的外显子组测序数据。外显子组指的是基因组中编码蛋白质的部分，占基因组的比例较小但是功能很重要，下一部分详细展开。</p></li><li><p>个人或研究小组提交的数据：研究人员提供的新发现的新变异数据，经过验证和整理入库。</p></li><li><p>计算预测：基于基因组序列的计算分析预测可能存在的变异。</p></li></ul><h3 id="4-3-数据库标识符"><a href="#4-3-数据库标识符" class="headerlink" title="4.3 数据库标识符"></a>4.3 数据库标识符</h3><p>dnSNP中每一个变异都被分配一个唯一的标识符，通常以”rs“开头，后跟数字。”rs编号“是SNP和其他小规模变异的标准标识符，用于在文献和基因组数据分析中进行引用。</p><h3 id="4-4-数据应用"><a href="#4-4-数据应用" class="headerlink" title="4.4 数据应用"></a>4.4 数据应用</h3><ul><li>GWAS：位点与性状的关联。</li><li>进化研究：比较不同物种或人群的SNP分布，研究基因进化历史。</li><li>生物信息工具开发：变异注释、功能预测、基因组分析。</li></ul><h3 id="5-ExAC数据库"><a href="#5-ExAC数据库" class="headerlink" title="5 ExAC数据库"></a>5 ExAC数据库</h3>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> StudyNotes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Reading Notes-&lt;Mathematical Population Genetics&gt; by Warren J.Ewens</title>
       <link href="/2024/08/22/Reading-Notes-Mathematical-Population-Genetics-by-Warren-J-Ewens/"/>
       <url>/2024/08/22/Reading-Notes-Mathematical-Population-Genetics-by-Warren-J-Ewens/</url>
