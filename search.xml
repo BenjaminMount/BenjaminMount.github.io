@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Proteomics</title>
+      <link href="/2024/08/26/proteomics/"/>
+      <url>/2024/08/26/proteomics/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Proteomics"><a href="#Proteomics" class="headerlink" title="Proteomics"></a>Proteomics</h1><h2 id="0-Preface"><a href="#0-Preface" class="headerlink" title="0 Preface"></a>0 Preface</h2><p>蛋白质组学分析基础概念知识。</p><p>蛋白质组学研究蛋白质结构、功能及其在生物系统中表达。分析过程中通常需要处理大量复杂的数据，包括蛋白质的鉴定、定量、修饰、相互作用等。</p><p>一般流程包括：</p><h3 id="数据获取与预处理"><a href="#数据获取与预处理" class="headerlink" title="数据获取与预处理"></a>数据获取与预处理</h3><ul><li>蛋白质鉴定：利用质谱（Mass Spectrometry，MS）技术识别样本中的蛋白质。</li><li>原始数据处理：将质谱数据转化为可识别的肽段和蛋白质信息。</li><li>数据过滤：移除低置信度的蛋白质或肽段。</li></ul><h3 id="数据定量分析"><a href="#数据定量分析" class="headerlink" title="数据定量分析"></a>数据定量分析</h3><ul><li>标签定量：使用标记技术对蛋白质进行相对或绝对定量。</li><li>无标签定量：通过光谱计数或基于强度的方法对蛋白质定量。</li></ul><h3 id="数据标准化和归一化"><a href="#数据标准化和归一化" class="headerlink" title="数据标准化和归一化"></a>数据标准化和归一化</h3><ul><li>标准化：消除批次效应或实验条件的差异，常用Z-score标准化、分位数归一化。</li><li>归一化：调整蛋白质定量数据，使不同样本之间具有可比性。</li></ul><h3 id="差异表达分析"><a href="#差异表达分析" class="headerlink" title="差异表达分析"></a>差异表达分析</h3><ul><li>统计分析：使用t检验、ANOVA等识别不同条件下显著变化的蛋白质。</li><li>多重比较校正：校正多重比较引起的假阳性率。</li></ul><h3 id="功能注释与通路分析"><a href="#功能注释与通路分析" class="headerlink" title="功能注释与通路分析"></a>功能注释与通路分析</h3><ul><li>功能注释：将蛋白质映射到功能数据库理解生物学功能。</li><li>通路分析：利用软件识别与特定生物学通路相关的差异表达蛋白。</li></ul><h3 id="结果验证与解释"><a href="#结果验证与解释" class="headerlink" title="结果验证与解释"></a>结果验证与解释</h3><ul><li>验证实验：使用相关技术对关键蛋白质的表达进行验证。</li><li>生物学意义解释：结合实验背景，解释发现的差异蛋白质和通路的生物学意义。</li></ul><h3 id="数据可视化与报告"><a href="#数据可视化与报告" class="headerlink" title="数据可视化与报告"></a>数据可视化与报告</h3><ul><li>可视化：可视化展示结果。</li><li>撰写报告：论文撰写。</li></ul><h2 id="1-批次效应"><a href="#1-批次效应" class="headerlink" title="1 批次效应"></a>1 批次效应</h2><p><strong>批次效应</strong>：实验中不同批次而引入的系统性误差，即使在相同实验条件下，不同批次处理也可能出现系统性差异。</p><h3 id="影响："><a href="#影响：" class="headerlink" title="影响："></a>影响：</h3><ul><li>伪差异：导致样本间的差异被认为是生物学上的真实差异；</li><li>结果的可重复性：重复实验中可能不一致，导致数据不可重复；</li><li>数据分析的复杂性：数据噪音增大，掩盖了真实的生物学信号。</li></ul><h3 id="校正方法："><a href="#校正方法：" class="headerlink" title="校正方法："></a>校正方法：</h3><ul><li>实验设计：将不同条件下的样本随机分配到不同批次中，避免批次效应与实验因素混杂；</li><li>数据分析：使用统计方法校正批次效应。</li></ul><h2 id="2-多重比较校正"><a href="#2-多重比较校正" class="headerlink" title="2 多重比较校正"></a>2 多重比较校正</h2><p>当同时进行大量统计检验时，假阳性结果会大量增加，因此需要多重比较校正。</p><h2 id="3-技术"><a href="#3-技术" class="headerlink" title="3 技术"></a>3 技术</h2><h3 id="3-1-PLINK技术"><a href="#3-1-PLINK技术" class="headerlink" title="3.1 PLINK技术"></a>3.1 PLINK技术</h3>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> StudyNotes </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Bioinformatics Datasets</title>
       <link href="/2024/08/24/Datasets/"/>
       <url>/2024/08/24/Datasets/</url>
