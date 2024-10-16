@@ -1,0 +1,446 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>FarMountBiolog | FarMountBiolog</title><meta name="author" content="远山"><meta name="copyright" content="远山"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Basic Statistic Method0 Preface在此记录下遇见的比较常用的或者比较有意思的统计方法。 1 数据处理方法缺失值处理-MICE填补法MICE(Multiple Imputation by Chained Equations)，数据集中指定的变量的缺失值使用其他变量作为预测变量进行估算。没有相关性的完全独立变量的数据集不会产生准确的插补。其基本步骤是：  初始插补：对每个缺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FarMountBiolog">
+<meta property="og:url" content="http://example.com/2024/10/14/Basic%20statistic%20method/index.html">
+<meta property="og:site_name" content="FarMountBiolog">
+<meta property="og:description" content="Basic Statistic Method0 Preface在此记录下遇见的比较常用的或者比较有意思的统计方法。 1 数据处理方法缺失值处理-MICE填补法MICE(Multiple Imputation by Chained Equations)，数据集中指定的变量的缺失值使用其他变量作为预测变量进行估算。没有相关性的完全独立变量的数据集不会产生准确的插补。其基本步骤是：  初始插补：对每个缺">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/Kakasi.jpg">
+<meta property="article:published_time" content="2024-10-14T01:29:47.982Z">
+<meta property="article:modified_time" content="2024-10-15T07:35:45.855Z">
+<meta property="article:author" content="远山">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/Kakasi.jpg"><link rel="shortcut icon" href="/img/Celtics.jpg"><link rel="canonical" href="http://example.com/2024/10/14/Basic%20statistic%20method/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'FarMountBiolog',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-15 15:35:45'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/Kakasi.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/pic_1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="FarMountBiolog"><span class="site-name">FarMountBiolog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-14T01:29:47.982Z" title="发表于 2024-10-14 09:29:47">2024-10-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-15T07:35:45.855Z" title="更新于 2024-10-15 15:35:45">2024-10-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Basic-Statistic-Method"><a href="#Basic-Statistic-Method" class="headerlink" title="Basic Statistic Method"></a>Basic Statistic Method</h1><h2 id="0-Preface"><a href="#0-Preface" class="headerlink" title="0 Preface"></a>0 Preface</h2><p>在此记录下遇见的比较常用的或者比较有意思的统计方法。</p>
+<h2 id="1-数据处理方法"><a href="#1-数据处理方法" class="headerlink" title="1 数据处理方法"></a>1 数据处理方法</h2><h3 id="缺失值处理-MICE填补法"><a href="#缺失值处理-MICE填补法" class="headerlink" title="缺失值处理-MICE填补法"></a>缺失值处理-MICE填补法</h3><p>MICE(Multiple Imputation by Chained Equations)，数据集中指定的变量的缺失值使用其他变量作为预测变量进行估算。<strong>没有相关性的完全独立变量的数据集不会产生准确的插补</strong>。其基本步骤是：</p>
+<ul>
+<li>初始插补：对每个缺失值进行初始插补（通常使用均值、回归或随机采样）。</li>
+<li>迭代插补：<strong>逐变量插补</strong>：将缺失的变量视为被预测的目标变量，对于每个缺失的变量基于现有数据构建回归模型预测缺失值；</li>
+<li>循环迭代：重复步骤（一般为5到10次），逐步更新插补结果，直到收敛（插补值不再发生显著变化）。</li>
+</ul>
+<p>MICE可以使用线性回归、逻辑回归、预测均值匹配（PMM）的程序来选择要估算的值。</p>
+<p>PMM（预测均值匹配Predictive Mean Matching），核心思想是通过匹配（注意，是<strong>匹配</strong>）预测值来插补缺失数据。首先构建回归模型，对缺失值通过回归模型计算其预测值，在原本无缺失值（观测数据中的真实值）的数据中找到与预测值最接近的值，这意味着插补的缺失值直接来源于已有数据中的观测值。</p>
+<p>即通过其他变量回归进行预测，然后寻找真实数据中最接近的值。并且重复迭代插补，直到插补的值收敛。</p>
+<h3 id="匹配对照方法-matchit-函数"><a href="#匹配对照方法-matchit-函数" class="headerlink" title="匹配对照方法-matchit()函数"></a>匹配对照方法-matchit()函数</h3><p>matchit()函数属于MatchIt包，专门用于执行各种类型的<strong>倾向评分匹配</strong>（propensity score matching），允许基于一个或多个变量进行最近邻匹配、全匹配、卡尺匹配、倾向评分匹配。</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">matchit<span class="punctuation">(</span></span><br><span class="line">  formula<span class="punctuation">,</span>          <span class="comment"># 通过公式的形式指定因变量（case）和自变量（匹配变量）</span></span><br><span class="line">  data<span class="punctuation">,</span>             </span><br><span class="line">  method <span class="operator">=</span> <span class="string">&quot;nearest&quot;</span><span class="punctuation">,</span> <span class="comment"># 匹配方法</span></span><br><span class="line">  distance <span class="operator">=</span> <span class="string">&quot;logit&quot;</span><span class="punctuation">,</span> <span class="comment"># 估计倾向评分的模型</span></span><br><span class="line">  caliper <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span>     <span class="comment"># 设定匹配宽限（仅用于连续变量，如年龄、血糖）</span></span><br><span class="line">  ratio <span class="operator">=</span> <span class="number">1</span><span class="punctuation">,</span>         <span class="comment"># 每个病例匹配的对照数</span></span><br><span class="line">  exact <span class="operator">=</span> <span class="literal">NULL</span><span class="punctuation">,</span>      <span class="comment"># 强制精确匹配的变量（如性别、种族）</span></span><br><span class="line">  replace <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">,</span>   <span class="comment"># 是否允许有放回匹配</span></span><br><span class="line">  verbose <span class="operator">=</span> <span class="literal">TRUE</span> <span class="punctuation">,</span>   <span class="comment"># 显示具体信息</span></span><br><span class="line">  ...                <span class="comment"># 其他参数</span></span><br><span class="line"><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>method：“nearest”：最近邻匹配，按举例最近的对照样本进行匹配；“exact”：精确匹配，仅匹配完全相同的值；“full”：全匹配，每个病例匹配所有对照，权重用于校正；，“subclass”：子分类匹配，通过倾向评分将样本分成多个子类；“optimal”：最优匹配，通过最小化总距离来匹配。</li>
+<li>distance：“logit”：逻辑回归；“probit”；”linear”。</li>
+<li>caliper：宽限值，限制某些变量的匹配范围；</li>
+</ol>
+<p>在匹配成功之后，可以使用love plot（平衡图）来检查匹配的效应，主要观察的变量是各个指标的SMD（标准化均值差异）和VR（方差比）。也可以逐个变量使用显著性统计检验（连续性变量使用t检验，分类型变量使用卡方检验）。</p>
+<p>也可以使用倾向得分评分来衡量：<strong>Distance</strong>：倾向得分：每个样本根据匹配变量计算出的概率，根据匹配公式中的自变量带入一个Logit模型或其他模型估计得出，表示每个样本被分配为“病例”的倾向评分。病例和对照的distance差异越小，越接近于配对。</p>
+<h3 id="相关系数热力图"><a href="#相关系数热力图" class="headerlink" title="相关系数热力图"></a>相关系数热力图</h3><p>对于感兴趣的变量，我们通常绘制相关系数图来表示其相关性，（要注意相关性只是初步的认知，对于低相关性的变量，我们可以认为其存在独立的可能性；对于高相关性的变量，我们需要在后续考虑其高相关性）在相关系数图中，可以使用渐变色、圆形、数字、相关性$p$值来表示。</p>
+<p>接下来在此着重介绍绘制存在显著差异$p$值的相关系数热力图：</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library<span class="punctuation">(</span>psych<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>corrplot<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># df 中记载了我们感兴趣的变量的信息，通过columns_to_check向量索引到这些数据，并且提取记录在df_subset中</span></span><br><span class="line">df_subset <span class="operator">&lt;-</span> df<span class="punctuation">[</span><span class="punctuation">,</span> ..columns_to_check<span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># corr.test存储在psych库中，能够计算个体对之间的相关性以及相关显著检验。</span></span><br><span class="line">corr_dftj <span class="operator">&lt;-</span> corr.test<span class="punctuation">(</span>df_subset<span class="punctuation">,</span> use <span class="operator">=</span> <span class="string">&quot;pairwise.complete.obs&quot;</span><span class="punctuation">,</span> method <span class="operator">=</span> <span class="string">&quot;pearson&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 提取相关性矩阵，用于后续绘制相关热力图</span></span><br><span class="line">corr_dftj_matrix <span class="operator">&lt;-</span> <span class="built_in">round</span><span class="punctuation">(</span>as.matrix<span class="punctuation">(</span>corr_dftj<span class="operator">$</span>r<span class="punctuation">)</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">)</span>  <span class="comment"># 获取相关系数矩阵</span></span><br><span class="line"><span class="comment"># 提取相关显著检验</span></span><br><span class="line">P <span class="operator">&lt;-</span> corr_dftj<span class="operator">$</span>p  <span class="comment"># 获取 p 值矩阵</span></span><br><span class="line"></span><br><span class="line">corrplot<span class="punctuation">(</span>corr_dftj_matrix<span class="punctuation">,</span> </span><br><span class="line">         p.mat <span class="operator">=</span> P<span class="punctuation">,</span> </span><br><span class="line">         method <span class="operator">=</span> <span class="string">&quot;circle&quot;</span><span class="punctuation">,</span> <span class="comment"># 显著星星时最好用圆</span></span><br><span class="line">         type <span class="operator">=</span> <span class="string">&quot;upper&quot;</span><span class="punctuation">,</span></span><br><span class="line">         col <span class="operator">=</span> colorRampPalette<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;#6495ED&quot;</span><span class="punctuation">,</span> <span class="string">&quot;white&quot;</span><span class="punctuation">,</span> <span class="string">&quot;#8B0000&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">(</span><span class="number">200</span><span class="punctuation">)</span><span class="punctuation">,</span>  </span><br><span class="line">         sig.level <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">.001</span><span class="punctuation">,</span> <span class="number">.01</span><span class="punctuation">,</span> <span class="number">.05</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="comment"># 显著性阈值</span></span><br><span class="line">         tl.pos <span class="operator">=</span> <span class="string">&quot;lt&quot;</span><span class="punctuation">,</span>  <span class="comment"># 标签位置</span></span><br><span class="line">         tl.col <span class="operator">=</span> <span class="string">&quot;black&quot;</span><span class="punctuation">,</span> <span class="comment"># 标签颜色</span></span><br><span class="line">         tl.cex <span class="operator">=</span> <span class="number">2</span><span class="punctuation">,</span> <span class="comment"># 标签字体</span></span><br><span class="line">         tl.offset <span class="operator">=</span> <span class="number">0.2</span><span class="punctuation">,</span> <span class="comment"># 标签离图案间距</span></span><br><span class="line">         cl.pos <span class="operator">=</span> <span class="string">&quot;r&quot;</span><span class="punctuation">,</span> <span class="comment"># 图例位置</span></span><br><span class="line">         insig <span class="operator">=</span> <span class="string">&quot;label_sig&quot;</span><span class="punctuation">,</span> <span class="comment"># 标记显著性符号 </span></span><br><span class="line">         pch.cex <span class="operator">=</span> <span class="number">2</span><span class="punctuation">,</span> <span class="comment"># 星星的大小</span></span><br><span class="line">         pch.col <span class="operator">=</span> <span class="string">&quot;red&quot;</span><span class="punctuation">,</span>  <span class="comment"># 星星的颜色</span></span><br><span class="line">         cl.cex <span class="operator">=</span> <span class="number">1.5</span><span class="punctuation">)</span>    <span class="comment"># 图例字体</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在下三角区域显示数字相关系数</span></span><br><span class="line">corrplot<span class="punctuation">(</span>corr_dftj_matrix <span class="punctuation">,</span> </span><br><span class="line">         type <span class="operator">=</span> <span class="string">&quot;lower&quot;</span><span class="punctuation">,</span> </span><br><span class="line">         method <span class="operator">=</span> <span class="string">&quot;number&quot;</span><span class="punctuation">,</span> <span class="comment"># 相关系数值</span></span><br><span class="line">         col <span class="operator">=</span> <span class="string">&quot;coral4&quot;</span><span class="punctuation">,</span>  <span class="comment"># 颜色</span></span><br><span class="line">         tl.pos <span class="operator">=</span> <span class="string">&quot;n&quot;</span><span class="punctuation">,</span>  <span class="comment"># 变量</span></span><br><span class="line">         cl.pos <span class="operator">=</span> <span class="string">&quot;n&quot;</span><span class="punctuation">,</span>  <span class="comment"># 图例</span></span><br><span class="line">         number.cex <span class="operator">=</span> <span class="number">1.4</span><span class="punctuation">,</span> </span><br><span class="line">         add <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> </span><br><span class="line">         diag <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p><code>psych</code> 包中的 <code>corr.test</code> 函数返回的 p 值矩阵是针对相关系数的显著性检验的结果。这些 p 值是通过 <strong>t 检验</strong> 检验每个相关系数是否显著不同于零。</p>
+<ul>
+<li>原假设$H_0$：变量之间没有线性关系；</li>
+<li>备择假设$H_1$：变量之间存在线性关系。</li>
+</ul>
+<p>检验统计量 t 统计量：</p>
+<p>$t=\frac{r\sqrt{n-2}}{\sqrt{1-r^2}}$</p>
+<p>其中 r 是相关系数，n 是样本大小。</p>
+<ul>
+<li>推导过程：相关系数 r 衡量变量之间的线性相关程度，其通用计算公式为：</li>
+</ul>
+<p>$r=\frac{\sum_{i=1}^n(X_i-\bar{X})(Y_i-\bar{Y})}{\sqrt{\sum_{i=1}^n(X_i-\bar{X})^2\sum_{i=1}^n(Y_i-\bar{Y})^2}}$</p>
+<p>在原假设成立的情况下：r = 0，此时样本相关系数近似为一个 t 分布（利用到回归）</p>
+<p>前提假设：变量X和Y都服从正态分布</p>
+<p><img src="/img/loading.gif" data-original="/2024/10/14/Basic%20statistic%20method/85514f8d41777acb2bd1cca8b3b6340.jpg" alt="85514f8d41777acb2bd1cca8b3b6340"></p>
+<h2 id="2-差异性检验方法"><a href="#2-差异性检验方法" class="headerlink" title="2 差异性检验方法"></a>2 差异性检验方法</h2><h3 id="2-1-数值型变量"><a href="#2-1-数值型变量" class="headerlink" title="2.1 数值型变量"></a>2.1 数值型变量</h3><h4 id="Wald-t-test"><a href="#Wald-t-test" class="headerlink" title="Wald t-test"></a>Wald t-test</h4><h4 id="Wilcox-秩检验"><a href="#Wilcox-秩检验" class="headerlink" title="Wilcox 秩检验"></a>Wilcox 秩检验</h4><h3 id="2-2-分类型变量"><a href="#2-2-分类型变量" class="headerlink" title="2.2 分类型变量"></a>2.2 分类型变量</h3><h4 id="卡方检验"><a href="#卡方检验" class="headerlink" title="卡方检验"></a>卡方检验</h4><h4 id="Fisher-exact-Test"><a href="#Fisher-exact-Test" class="headerlink" title="Fisher exact Test"></a>Fisher exact Test</h4><p>Fisher精确检验适用于分析两个分类变量之间独立性的小样本数据的统计检验方法。适用于表格中某个变量具有较小的计数的情况。</p>
+<ul>
+<li>$H_0$：Group1和Group2的目标检测变量没有显著差异，即检测变量与组别无关。</li>
+<li>$H_1$：Group1和Group2的目标检测变量存在显著差异，即检测变量与组别相关。</li>
+</ul>
+<p>Fisher精确检验依赖于计算每种可能的列联表的概率并累积其概率和。其底层逻辑基于<strong>超几何分布</strong>和<strong>列联表</strong>的排列组合，其核心思想是在列联表的所有可能配置中计算每种组合的概率，累加所有等于观察结果或者比观察结果还要极端的概率。因此确保了小样本情况下的结果精确性。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Group 1</th>
+<th>Group 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>a</td>
+<td>c</td>
+</tr>
+<tr>
+<td>0</td>
+<td>b</td>
+<td>d</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>考虑总共有$n=a+b+c+d$个个体，其中有$a+c$个个体是目标检测变量取值为1的，$b+d$个个体是取值为0的。给定的如上的$2\times 2$列联表，其概率由超几何分布给出：</p>
+<p>$P(a|a+b,a+c,n)=\frac{\binom{a+b}a\binom{c+d}c}{\binom n{a+c}}$</p>
+<p>Fisher精确检验的p值是基于<strong>计算观察到的列联表及所有比其更极端的表的概率</strong>。所谓“更极端”的表是指那些在原假设成立时比当前观察到的表更加偏离独立性的表。偏离独立性意味着更偏向于一种极端（如检出率极低或极高的情况）。因此，Fisher精确检验的p值为所有这些极端表的概率和：</p>
+<script type="math/tex; mode=display">p=\sum_\text{极端的表}P(a\mid a+b,a+c,n)$$。
+
+
+
+#### CMH检验
+
+
+
+### 数值/分类型变量
+
+#### 基于CLR的系数显著性检验
+
+
+
+### 
+
+
+
+## 3 降维及聚类方法
+
+### PCOA（主坐标分析）
+
+PCA（Principal component analysis）与PCoA（Principal coordianate analysis, 主坐标分析） 
+
+PCA：利用正交变换把数据从线性相关变量转换为少数几个方差最大的线性无关变量，每个PC是对变量的线性组合，PCA没有要求变量之间线性无关，在进行PCA之前需要对变量进行标准化，统一量纲。
+
+PCA要求的是最后得到的主成分之间是线性无关的，研究者希望在进行PCA之后得到的PC（主成分）能够解释较大的方差，这样的主成分是具有代表性的，是能够达到降维的目的的。
+
+相比于PCA，PCoA并不是想尽可能多地保留方差，而是尽可能地保持数据之间的距离结构，并将其在欧氏空间中进行可视化。PCaA基于距离矩阵而不是基于原始数据矩阵来进行分析，适用于欧氏距离、布雷-柯蒂斯距离、Jaccard距离。
+
+1. 计算距离矩阵
+
+   给定一组样本点$x_1,x_2,...,x_n$，计算样本对之间的距离，得到一个对称的$x\times x$距离矩阵$D$，其中$d_{ij}$表示样本$x_i$和$x_j$之间的距离。
+
+2. 双中心化距离矩阵
+
+   将距离矩阵$D$进行双中心化，生成一个新的矩阵，用于将数据投射到欧氏空间中，对距离$d_{ij}$，转化为$a_{ij}=\frac{1}{2}d_{ij}^2$，在对矩阵$A$进行中心化，得到矩阵$\Delta_1=(\delta_{ij})$，其中$\delta_{ij}=a_{ij}-\bar{a}_i-\bar{a}_j+\bar{a}$，再对$\Delta_1$进行特征分解，计算器特征值，以及特征向量矩阵。
+
+3. 可视化
+
+   选取前k个特征值以及对应的特征向量取值可以对对象进行降维，可以通过二维或三维图展示数据，样本间的距离关系可以得到好的保持。
+
+PCOA能够对簇进行检验，检验两簇是否在统计意义上是相隔开的。
+
+#### PCoA Plus: Permutation Test
+
+PERMANOVA是多元方差分析的非参数变体，被用来比较多组检测样本的统计指标值的异同。其利用**距离矩阵**对总方差进行分解，分析不同分组因素对样本差异的解释度，并且使用**置换检验**对每个变量解释的统计学意义进行显著性分析。有时也被称为Adonis检验。
+
+其原假设为：
+
+- 每组样品在其检测指标构成的检测空间中的中心点和离散度没有差别。
+
+拒绝原假设，即表示不同样本的分布显著不同。为此，该检验是根据距离矩阵完成的，即要预先计算样本在检测指标定义的多维空间的距离。
+
+PERMANOVA对检测数据的分布没有限制，不受组间协方差的影响，其前提假设是：
+
+1. 每个对象的数据可交换；
+2. 可交换的对象相互独立；
+3. 每个样本的数据具有一致的多变量分布。
+
+检验统计值计算的是伪F值，计算方式是不同样本之间的距离平方和除以同一组样本之间距离的平方和。$F=\frac{SS_A/(a-1)}{SS_W/(N-a)}$。该统计量的显著性通过数据置换的方式计算，比较随机置换数据获得的F值，是否高于或者等于实际观测到的F值，如果多于5%随机置换得到的F值高于实际观测值，则记为p>0.05，即不同组的样本之间不存在显著差异。
+
+
+
+## 4 统计模型
+
+### 1 条件逻辑回归
+
+Breslow NE, Day NE. Statistical methods in cancer research. Volume I - The analysis of case-control studies. IARC Sci Publ. 1980;(32):5-338. PMID: 7216345.
+
+似然函数能够描述前瞻性分析和病例对照实验。
+
+当在研究中不引入条件（无条件回归模型）时：即使用无条件回归模型来估计相对风险时，会导致估计参数时，参数阶数（在估计时会引入每个分层的参数来描述不同分层之间的差异，这些是干扰参数，也是无关参数）与观察数接近，导致估计发生偏倚。
+
+假设每个分层都由一个匹配的病例-对照构成，暴露记为$x=1$，未暴露记为$x=0$。每对的结果都可以表示为一个$2\times 2$表的形式，拟合的模型形式为：
+
+$$\mathrm{pr_i(y=1|x)=\frac{\exp(\alpha_i+\beta x)}{1+\exp(\alpha_i+\beta x)},}</script><p>而对于每个分层，可能存在四种情况（case暴露，control暴露；case暴露，control不暴露；case不暴露，control暴露；case不暴露，control不暴露）最终无条件模型与条件模型得到的估计会不同，无条件模型相对会低估结果。（书中有详细推导，在此不展开）</p>
+<p>为此实际实验中通常设定一个case与一个或多个control进行匹配，此时条件似然函数被简化。</p>
+<p>对于条件逻辑回归，一般来说一个病例匹配3~4个对照是比较合理的选择，虽然病例尽可能多地匹配对照，但是在增加到一定数目之后，边际效益会递减。</p>
+<p>如下为个人观点：</p>
+<p>为什么在设定1：4的匹配，与设定1：10的匹配的蛋白位点不同？</p>
+<p>很直观的结果来看，当我们选择1：4匹配时，如果真正的阳性蛋白位点，其case普遍比control要高，那么其p值会很小。而当我们选择1：10匹配时，这一蛋白位点上，出现了较多的control其表达量反而比case要低，此时就降低了该蛋白位点的p值，使得该蛋白位点的阳性被“隐藏“。此时，在1：10匹配时，我们没有考虑完全所有的混杂因素，导致携带更多混杂的control进入了模型的系数估计的过程中。</p>
+<p>但这并不是绝对的，我们如何保证1：4的匹配绝对控制混杂了呢？</p>
+<h3 id="2-Cox比例风险模型"><a href="#2-Cox比例风险模型" class="headerlink" title="2 Cox比例风险模型"></a>2 Cox比例风险模型</h3><h4 id="2-1-普通Cox比例风险模型"><a href="#2-1-普通Cox比例风险模型" class="headerlink" title="2.1 普通Cox比例风险模型"></a>2.1 普通Cox比例风险模型</h4><p>Cox模型不仅可以包含类别变量还可以包含数值变量。</p>
+<p>1、生存函数：表示对象在时间点t仍然生存的概率，记作$S(t)$。</p>
+<p>2、风险函数：表示对象的生存时间达到t后失败的概率，记作$h(t)$。</p>
+<p>概率密度函数记作$f(t),h(t)=f(t)/S(t)$，累积分布函数满足$F(t)=1-S(t)$，因此累计风险函数$H(t)=-logS(t)$。</p>
+<p>对于Cox模型，存在</p>
+<p>$h(t,x)=h_0(t)exp(\beta X)$</p>
+<p>即：$ln\frac{h(t,X)}{h_0(t)}=\beta X$</p>
+<p>其中$X=(X_1,…,X_n)’$是独立于时间的可能影响生存时间的协变量。$h_0(t)$是一个非参数的基线风险函数，表示协变量全为0时的风险，对所有个体来说都是一样的。并且可知，Cox回归类似于线性回归，Cox回归的是个体风险与人群基线风险比值的对数。</p>
+<p>前提条件：风险比值对数与协变量之间呈线性关系、风险比值对数与时间无关。</p>
+<p>Tips：如果风险比值对数与时间有关，则需要使用依时协变量模型。</p>
+<p><strong>模型检验假设</strong>：1、比例风险假设检验：Schoenfeld残差检验，该残差应当与时间无关；若有证据证明某变量违反了比例风险假设，可以考虑将其设置为分层变量。2、线性关系假设：Martingale残差检验；自然样条检验。如违反线性假设，需要考虑对其进行非线性转换。</p>
+<p>另：估计协变量的系数时，可以不涉及基线风险系数的估计。而如果涉及到后续预测，则需要估计基线风险，常用的方法是Breslow方法。</p>
+<h4 id="时依以及分层Cox比例风险模型"><a href="#时依以及分层Cox比例风险模型" class="headerlink" title="时依以及分层Cox比例风险模型"></a>时依以及分层Cox比例风险模型</h4><p>时依（协）变量（Time-dependent covariables）：该变量随时间的改变而发生变化。</p>
+<p>当不满足等比例风险时，1、按照协变量分层分析，即采用分层的Cox回归；2、采用时依Cox回归。</p>
+<h3 id="3-Meta分析"><a href="#3-Meta分析" class="headerlink" title="3 Meta分析"></a>3 Meta分析</h3><p>Meta-Analysis用于综合多个独立研究的结果，汇总不同研究的样本量和效应大小。Meta分析是一种<strong>定量</strong>研究方法，目的是提高统计效能、检测异质性（识别不同研究之间的差异，分析差异来源）、探寻亚组效应（探究变量如何影响总体效应）。</p>
+<p>具体步骤如下：</p>
+<ul>
+<li>明确研究问题与定义效应指标：在明确研究问题时通常涉及某种干预措施、暴露因素或生物标志物对某个结局的影响；效应指标通常为相对风险（RR）、比值比（OR）、均数差（MD）或标准化均数差（SMD）。</li>
+<li>文献检索与研究选择：<strong>系统检索</strong>现有的文献；设定明确的<strong>纳入标准和排除标准</strong>，以确保选取的研究与研究问题相关。通常会考虑实验设计、暴露因素、结局指标等方面；最终筛选文献是符合标准的高质量研究。</li>
+<li>数据提取与质量评估：从纳入的研究中<strong>提取数据</strong>，如效应大小、标准误、样本量、随访时间等；再使用适当的工具<strong>评估研究的质量</strong>，包括随机化、盲法、失访率等，评估偏倚风险。</li>
+<li>选择适当的Meta分析模型：<strong>固定效应模型</strong>or<strong>随机效应模型</strong>。</li>
+<li>效应合并与异质性分析：通过统计学方法将不同研究的效应大小进行<strong>加权平均</strong>，得到总体效应值，加权通常基于每个研究的样本量或标准误；异质性分析用来分析各个研究之间的差异是否显著，包括Q检验、$I^2$统计量。（异质性显著时建议采用随即效用模型，否则可以选择固定效应模型）</li>
+<li>亚组分析与敏感性分析：将数据按照某些特征进行分组，探索不同亚组间的效应差异；敏感性分析用于评估某些特定研究对总体效应估计的影响。</li>
+<li>发表偏倚评估：一般来说只有显著结果的研究更容易发表，没有显著结果的研究可能会被遗漏，通过<strong>漏斗图</strong>或Egger回归检验来评估是否存在发表偏倚。</li>
+<li>报告与解释结果：最终结果通常以<strong>森林图</strong>展示，展示所有研究的<strong>效应大小</strong>和置信区间。</li>
+</ul>
+<h4 id="固定效应Meta分析"><a href="#固定效应Meta分析" class="headerlink" title="固定效应Meta分析"></a>固定效应Meta分析</h4><ul>
+<li><p>基本假设—唯一真实效应：假设所有纳入的研究都在估计相同的真实效应值，研究间的差异完全由样本内的随机误差引起，意味着每个研究实际上都在估计同一效应值。</p>
+</li>
+<li><p>权重分配：通常样本量大的研究会赋予更大的权重。加权方式是通过逆方差加权法来分配的，加权公式是：</p>
+<p>$w_i=\frac{1}{SE_i^2}$，其中$SE_i^2$是该研究效应估计的标准误。</p>
+</li>
+<li><p>效应合并：将个研究的效应估计值按其权重加权平均，得出合并效应值，</p>
+<p>$\hat\theta=\frac{\sum{w_{i}\theta_i}}{\sum{w_{i}}}$</p>
+</li>
+</ul>
+<p><strong>适用于</strong>异质性较小的情况，假设所有研究估计同一个效应。</p>
+<h4 id="随机效应Meta分析"><a href="#随机效应Meta分析" class="headerlink" title="随机效应Meta分析"></a>随机效应Meta分析</h4><ul>
+<li><p><strong>基本假设—多重真实效应</strong>：假设每个研究可能估计不同的真实效应值。意味着研究之间存在一定的变异，且这种变异不仅仅由随机误差引起，可能因为研究设计、对象、干预措施等方面的不同；研究之间的差异来自每个研究内的随机误差或研究间的真实效应值差异。</p>
+</li>
+<li><p><strong>权重分配</strong>：随机效应模型还考虑了研究间的变异，</p>
+<p>$w_i=\frac{1}{SE^2_i+\tau^2}$</p>
+<p>其中$\tau^2$是研究间的变异，当研究之间差异较大时，会降低各研究的权重。</p>
+</li>
+<li><p>效应合并，同样根据加权合并。</p>
+</li>
+<li><p>异质性估计：DerSimonian-Laird法衡量研究间差异，$I^2$统计量。</p>
+</li>
+</ul>
+<p><strong>适用于</strong>异质性较大的情况。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">远山</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/10/14/Basic%20statistic%20method/">http://example.com/2024/10/14/Basic statistic method/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">FarMountBiolog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/Kakasi.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/09/20/Medical%20Basic%20Knowledge/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/Kakasi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">远山</div><div class="author-info__description">大鹏一日同风起，扶摇直上九万里</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/BenjaminMount"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/BenjaminMount/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=2396979300&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="mailto:liutongyan@hust.edu.cn" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Keep thinking. Progress itself is hard.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Basic-Statistic-Method"><span class="toc-text">Basic Statistic Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-Preface"><span class="toc-text">0 Preface</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-text">1 数据处理方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86-MICE%E5%A1%AB%E8%A1%A5%E6%B3%95"><span class="toc-text">缺失值处理-MICE填补法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%AF%B9%E7%85%A7%E6%96%B9%E6%B3%95-matchit-%E5%87%BD%E6%95%B0"><span class="toc-text">匹配对照方法-matchit()函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0%E7%83%AD%E5%8A%9B%E5%9B%BE"><span class="toc-text">相关系数热力图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B7%AE%E5%BC%82%E6%80%A7%E6%A3%80%E9%AA%8C%E6%96%B9%E6%B3%95"><span class="toc-text">2 差异性检验方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%95%B0%E5%80%BC%E5%9E%8B%E5%8F%98%E9%87%8F"><span class="toc-text">2.1 数值型变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Wald-t-test"><span class="toc-text">Wald t-test</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Wilcox-%E7%A7%A9%E6%A3%80%E9%AA%8C"><span class="toc-text">Wilcox 秩检验</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%88%86%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F"><span class="toc-text">2.2 分类型变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%A1%E6%96%B9%E6%A3%80%E9%AA%8C"><span class="toc-text">卡方检验</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fisher-exact-Test"><span class="toc-text">Fisher exact Test</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Cox%E6%AF%94%E4%BE%8B%E9%A3%8E%E9%99%A9%E6%A8%A1%E5%9E%8B"><span class="toc-text">2 Cox比例风险模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E6%99%AE%E9%80%9ACox%E6%AF%94%E4%BE%8B%E9%A3%8E%E9%99%A9%E6%A8%A1%E5%9E%8B"><span class="toc-text">2.1 普通Cox比例风险模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E4%BE%9D%E4%BB%A5%E5%8F%8A%E5%88%86%E5%B1%82Cox%E6%AF%94%E4%BE%8B%E9%A3%8E%E9%99%A9%E6%A8%A1%E5%9E%8B"><span class="toc-text">时依以及分层Cox比例风险模型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Meta%E5%88%86%E6%9E%90"><span class="toc-text">3 Meta分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E6%95%88%E5%BA%94Meta%E5%88%86%E6%9E%90"><span class="toc-text">固定效应Meta分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%88%E5%BA%94Meta%E5%88%86%E6%9E%90"><span class="toc-text">随机效应Meta分析</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/14/Basic%20statistic%20method/" title="无题">无题</a><time datetime="2024-10-14T01:29:47.982Z" title="发表于 2024-10-14 09:29:47">2024-10-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/20/Medical%20Basic%20Knowledge/" title="无题">无题</a><time datetime="2024-09-20T09:01:14.342Z" title="发表于 2024-09-20 17:01:14">2024-09-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/26/proteomics/" title="Proteomics">Proteomics</a><time datetime="2024-08-26T03:48:19.000Z" title="发表于 2024-08-26 11:48:19">2024-08-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/24/Datasets/" title="Bioinformatics Datasets">Bioinformatics Datasets</a><time datetime="2024-08-24T08:54:54.000Z" title="发表于 2024-08-24 16:54:54">2024-08-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/22/Reading-Notes-Mathematical-Population-Genetics-by-Warren-J-Ewens/" title="Reading Notes-&lt;Mathematical Population Genetics&gt; by Warren J.Ewens">Reading Notes-&lt;Mathematical Population Genetics&gt; by Warren J.Ewens</a><time datetime="2024-08-22T06:13:03.000Z" title="发表于 2024-08-22 14:13:03">2024-08-22</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/pic_1.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 By 远山</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: 'Ov23liSwPtc8jModvEnf',
+      clientSecret: '087679c1568bceccc832c27ef3c219a01cb93a8e',
+      repo: 'BenjaminMount.github.io',
+      owner: 'BenjaminMount',
+      admin: ['BenjaminMount'],
+      id: 'cf13b8590df144a2633a44bacf0ffba7',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>
